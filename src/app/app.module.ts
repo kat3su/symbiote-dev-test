@@ -7,6 +7,7 @@ import { appRoutes } from './app.route';
 import { AppComponent } from './app.component';
 import { PageListComponent } from './components/page-list/page-list.component';
 import { PageEditorComponent } from './components/page-editor/page-editor.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { PageEditorComponent } from './components/page-editor/page-editor.compon
     AppComponent,
     PageListComponent,
     PageEditorComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

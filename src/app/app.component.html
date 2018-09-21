@@ -1,9 +1,17 @@
 <div fxLayout="row">
   <div fxFlex="30">
     <app-page-list [pages]="pages" (select)="openPage($event)"></app-page-list>
-    <div>
-      <button routerLink="pages/new">Add Page</button>
-    </div>
+    <ng-template [ngIf]="activeUser" [ngIfElse]="loginLink">
+      <div>
+        <button routerLink="pages/new">Add Page</button>
+      </div>
+      <div>
+        Welcome {{activeUser.username}}
+      </div>
+    </ng-template>
+    <ng-template #loginLink>
+      <a routerLink="login">Login</a>
+    </ng-template>
   </div>
   <div fxFlex="70">
     <router-outlet></router-outlet>
