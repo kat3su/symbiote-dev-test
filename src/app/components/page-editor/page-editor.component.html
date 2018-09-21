@@ -1,13 +1,17 @@
 <ng-template [ngIf]="editorMode" [ngIfElse]="viewingMode">
   <div>
-    <input [(ngModel)]="page.title" />
+    <mat-form-field>
+      <input matInput placeholder="Name" [(ngModel)]="page.title" />
+    </mat-form-field>
   </div>
   <div>
-    <textarea [(ngModel)]="page.content"></textarea>
+    <mat-form-field>
+      <textarea matInput placeholder="Page Content" [(ngModel)]="page.content"></textarea>
+    </mat-form-field>
   </div>
   <div>
     <div *ngIf="error">{{error}}</div>
-    <button (click)="save()">Save</button>
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
   </div>
 </ng-template>
 <ng-template #viewingMode>

@@ -1,19 +1,35 @@
 <div fxLayout="row">
   <div fxFlex="30">
-    <app-page-list [pages]="pages" (select)="openPage($event)"></app-page-list>
-    <ng-template [ngIf]="activeUser" [ngIfElse]="loginLink">
-      <div>
-        <button routerLink="pages/new">Add Page</button>
-      </div>
-      <div>
-        Welcome {{activeUser.username}}
-      </div>
-    </ng-template>
-    <ng-template #loginLink>
-      <a routerLink="login">Login</a>
-    </ng-template>
+
   </div>
   <div fxFlex="70">
-    <router-outlet></router-outlet>
+
   </div>
 </div>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    mode="side"
+    opened="true">
+    <app-page-list [pages]="pages" (select)="openPage($event)"></app-page-list>
+    <ng-template [ngIf]="activeUser" [ngIfElse]="loginLink">
+      <mat-nav-list>
+        <a mat-list-item routerLink="pages/new"><strong>Add Page</strong></a>
+        <a mat-list-item>
+          Welcome, {{activeUser.username}}
+        </a>
+      </mat-nav-list>
+    </ng-template>
+    <ng-template #loginLink>
+      <mat-nav-list>
+        <a mat-list-item routerLink="login"><strong>Login</strong></a>
+      </mat-nav-list>
+    </ng-template>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
