@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { PageListComponent } from './components/page-list/page-list.component';
 import { PageEditorComponent } from './components/page-editor/page-editor.component';
 import { LoginComponent } from './components/login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { LoginComponent } from './components/login/login.component';
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
