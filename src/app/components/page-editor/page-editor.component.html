@@ -1,0 +1,16 @@
+<ng-template [ngIf]="editorMode" [ngIfElse]="viewingMode">
+  <div>
+    <input [(ngModel)]="page.title" />
+  </div>
+  <div>
+    <textarea [(ngModel)]="page.content"></textarea>
+  </div>
+  <div>
+    <div *ngIf="error">{{error}}</div>
+    <button (click)="save()">Save</button>
+  </div>
+</ng-template>
+<ng-template #viewingMode>
+  <h1>{{page.title}}</h1>
+  <div>{{page.content}}</div>
+</ng-template>
