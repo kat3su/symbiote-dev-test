@@ -1,26 +1,27 @@
 import { Injectable } from '@angular/core';
 import {User} from '../models/user';
-import {Observable, Observer, of} from 'rxjs';
+import {Observable, of, ReplaySubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private activeUser: User;
-  private activeUserObserver: Observer<User>;
+  private activeUserStream: ReplaySubject<User>;
   constructor() {}
 
   getActiveUser() {
-    return new Observable<User>(observer => {
-      this.activeUserObserver = observer;
-      this.activeUserObserver.next(this.activeUser);
-    });
+    if (!this.activeUserStream) {
+      this.activeUserStream = new ReplaySubject<User>(1);
+      this.activeUserStream.next(this.activeUser);
+    }
+    return this.activeUserStream;
   }
 
   login(user): Observable<any> {
     if (this.authenticate(user)) {
       this.activeUser = user;
-      this.activeUserObserver.next(this.activeUser);
+      this.activeUserStream.next(this.activeUser);
       return of({
         success: true
       });

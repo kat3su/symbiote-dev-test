@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {Page} from '../../models/page';
 import {PageService} from '../../services/page.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-page-editor',
@@ -14,17 +15,21 @@ export class PageEditorComponent implements OnInit {
   error: string;
   editorMode: boolean;
 
-  constructor(private route: ActivatedRoute, private router: Router, private pageService: PageService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private pageService: PageService, private authService: AuthService) { }
 
   ngOnInit() {
+    this.editorMode = false;
     this.route.params.subscribe(param => {
       // Opening an existing page
       if (param['pageName']) {
         this.page = this.pageService.getPageByName(param['pageName']);
-        this.editorMode = false;
-      } else { // New Page
-        this.page = new Page();
-        this.editorMode = true;
+      } else { // New Page for logged in user
+        this.authService.getActiveUser().subscribe(user => {
+          if (user) {
+            this.page = new Page();
+            this.editorMode = true;
+          }
+        });
       }
     });
   }
