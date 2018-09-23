@@ -21,7 +21,7 @@ This is a response to [Symbiote Developer Exercise](https://symbiote.github.io/d
 
 ## Demo
 
-Demo: [public/index.html](public/index.html)
+Demo: [public/index.html](https://lthh89vt.github.io/symbiote-dev-test/public/)
 
 ## Development Service
 
