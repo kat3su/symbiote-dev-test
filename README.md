@@ -19,10 +19,6 @@ This is a response to [Symbiote Developer Exercise](https://symbiote.github.io/d
 - Angular Version 6.x
 - Angular Material Material
 
-## Demo
-
-Demo: [public/index.html](https://lthh89vt.github.io/symbiote-dev-test/public/)
-
 ## Development Service
 
 Install or upgrade to Angular Cli version 6.x if haven't done so
