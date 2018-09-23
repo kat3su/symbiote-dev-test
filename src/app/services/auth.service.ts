@@ -8,13 +8,13 @@ import {Observable, of, ReplaySubject} from 'rxjs';
 export class AuthService {
   private activeUser: User;
   private activeUserStream: ReplaySubject<User>;
-  constructor() {}
+
+  constructor() {
+    this.activeUserStream = new ReplaySubject<User>(1);
+    this.activeUserStream.next(this.activeUser);
+  }
 
   getActiveUser() {
-    if (!this.activeUserStream) {
-      this.activeUserStream = new ReplaySubject<User>(1);
-      this.activeUserStream.next(this.activeUser);
-    }
     return this.activeUserStream;
   }
 
